@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
+import { useForm } from './hooks/useForm';
 
 export const Login = () => {
 
-    const [ dataLogIn, setDataLogin ] = useState({ email: '', password: ''});
+    const [ data, handleInputChange ] = useForm({ email: '', password: ''});
 
-    const handleOnChange = ( { target }) => {
-       setDataLogin({ ...dataLogIn, [target.name]: target.value})
-    }
     return (
         <form className="text-center">
             <div className="form-group">
@@ -14,15 +12,15 @@ export const Login = () => {
                     className="form-control"
                     placeholder="example@gmail.com"
                     name="email"
-                    onChange={ handleOnChange }
-                    value={ dataLogIn.email } />
+                    onChange={ handleInputChange }
+                    value={ data.email } />
             </div>  
             <div className="form-group">
                 <input type="password"
                  className="form-control"
                  name="password"
-                 onChange = { handleOnChange } 
-                 value = { dataLogIn.password}/>
+                 onChange = { handleInputChange } 
+                 value = { data.password}/>
             </div>  
           <button type="submit" className="btn btn-primary m-3">Login</button>
         </form>

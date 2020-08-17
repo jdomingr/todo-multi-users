@@ -1,7 +1,15 @@
 import { useState } from 'react';
 
-export const useForm = () => {
+export const useForm = ( initiaState = {}) => {
 
-    const [ state, setState] = useState();
+    const [ data, setData] = useState( initiaState );
+
+    const handleInputChange = ( { target } ) => {
+        setData({
+            ...data,
+             [target.name]: target.value
+            });
+    }
+    return [ data, handleInputChange];
 
 }
