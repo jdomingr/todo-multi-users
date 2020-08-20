@@ -1,0 +1,7 @@
+.draggable-item {
+    width: 200px;
+    margin: 5px 3px;
+    background-color: lightblue;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
