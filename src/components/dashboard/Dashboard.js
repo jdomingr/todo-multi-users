@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { ItemList } from '../dragDrop/list/ItemList';
 import './list.css';
 
 export const Dashboard = () => {
+
+    const initialTasks  = [
+        {id:'1', content: 'Este es un test'},
+        {id:'2', content: 'Aprender Inglés'},
+        {id:'3', content: 'Aprender React'},
+        {id:'4', content: 'Tratar de superarme'},
+    ];
+    const [tasks, setTasks] = useState(initialTasks);
+
+    const handleAddTask = () => {
+        //I must fix this
+        const testTask = { id: '5', content:'List Tasks'}
+        setTasks([...tasks, testTask]);
+    }
+
+    const reorderTasks = ( tasks, sourceIndex, destinationIndex) => {
+        const reorderedTasks = Array.from(tasks);
+        const [ removed ] = reorderedTasks.splice(sourceIndex ,1);
+        reorderedTasks.splice(destinationIndex, 0, removed);
+        return reorderedTasks;
+     
+    }
 
     const onDragEnd = (result) => {
 
@@ -14,6 +36,10 @@ export const Dashboard = () => {
         if(result.destination.index === result.source.index){
             return;
         }
+        
+        const aux = reorderTasks( tasks, result.source.index, result.destination.index);
+        
+        setTasks(aux);
     }
 
     return(
@@ -23,12 +49,13 @@ export const Dashboard = () => {
                 <Droppable droppableId="list">
                     {provided => (
                         <div className="list-container" ref={provided.innerRef} {...provided.droppableProps}>
-                            <ItemList />
+                            <ItemList tasks = { tasks }/>
                             {provided.placeholder}
                         </div>
                     )}
                 </Droppable>
             </DragDropContext>
+            <button onClick = { handleAddTask }>Add task</button>
             {/* <div className="row">
                 <div className="col-sm-4">
                     <ul className="list-group">
