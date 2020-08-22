@@ -7,6 +7,7 @@ export const DraggableItem = ( {task, id }) => {
             { provided => (
                 <div className="draggable-item" ref= {provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                     {task.content}
+                    <div className="closable-item"></div>
                 </div>
             )}
         </Draggable>

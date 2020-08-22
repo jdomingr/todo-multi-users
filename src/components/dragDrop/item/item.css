@@ -1,7 +1,29 @@
 .draggable-item {
-    width: 200px;
-    margin: 5px 3px;
+    display: flex;
+    overflow-wrap: normal;
+    width: 250px;
+    margin: 5px 20px;
+    padding: 5px;
     background-color: lightblue;
     border: 1px solid grey;
     border-radius: 5px;
+    position: relative;
+}
+
+.closable-item:before{
+    content: 'x';
+    font-weight: bolder;
+    display: flex;
+    cursor: pointer;
+    color: gray;
+    padding: 1px;
+    top: -5px;
+    right: 5px;
+    position: absolute;   
+}
+
+.closable-item:hover:before{
+    color:#2098D1;
+    transition: all .2s ease-in-out;
+    transform: scale(1.5)
 }

@@ -6,7 +6,7 @@ import './list.css';
 export const Dashboard = () => {
 
     const initialTasks  = [
-        {id:'1', content: 'Este es un test'},
+        {id:'1', content: 'Este es un testsssssssssss asdddddddddddddddddddd asddddddddddddddddddddddd asdddddddd asdasdasd'},
         {id:'2', content: 'Aprender Inglés'},
         {id:'3', content: 'Aprender React'},
         {id:'4', content: 'Tratar de superarme'},
@@ -43,46 +43,23 @@ export const Dashboard = () => {
     }
 
     return(
-        <div>
+        <div className="container-dashboard">
             <h1>Dashboard</h1>
-            <DragDropContext onDragEnd={onDragEnd}>
-                <Droppable droppableId="list">
-                    {provided => (
-                        <div className="list-container" ref={provided.innerRef} {...provided.droppableProps}>
-                            <ItemList tasks = { tasks }/>
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </DragDropContext>
-            <button onClick = { handleAddTask }>Add task</button>
-            {/* <div className="row">
-                <div className="col-sm-4">
-                    <ul className="list-group">
-                        <li className="list-group-item">Test 1</li>
-                        <li className="list-group-item">Test 2</li>
-                        <li className="list-group-item">Test 3</li>
-                        <li className="list-group-item">Test 4</li>
-                    </ul>
-                </div>
-                <div className="col-sm-4">
-                    <ul className="list-group">
-                        <li className="list-group-item">Test 1</li>
-                        <li className="list-group-item">Test 2</li>
-                        <li className="list-group-item">Test 3</li>
-                        <li className="list-group-item">Test 4</li>
-                    </ul>
-                </div>
-                <div className="col-sm-4">
-                    <ul className="list-group">
-                        <li className="list-group-item">Test 1</li>
-                        <li className="list-group-item">Test 2</li>
-                        <li className="list-group-item">Test 3</li>
-                        <li className="list-group-item">Test 4</li>
-                    </ul>
-                </div>
-                
-            </div> */}
+            <div>
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <Droppable droppableId="list">
+                        {provided => (
+                            <div className="list-container" ref={provided.innerRef} {...provided.droppableProps}>
+                                <ItemList tasks = { tasks }/>
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
+                <button className="btn-list" onClick = { handleAddTask }>Add task</button>
+            </div>
+            
+
         </div>
     );
 }

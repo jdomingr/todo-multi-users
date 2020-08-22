@@ -2,6 +2,27 @@
     display:flex;
     flex-direction: column;
     background-color: lightgray;
-    width: 210px;
+    width: 300px;
     border-radius: 5px;
+    margin: 50px;
+    box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);;
+}
+
+.container-dashboard{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-list {
+    display: block;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #cccccc;
+    padding: 1px;
+}
+
+.btn-list:hover{
+    color:#2098D1;
+    transition: all .2s ease-in-out;
+    transform: scale(1.2)
 }
