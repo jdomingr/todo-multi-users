@@ -11,7 +11,10 @@ export const itemReducer = ( state = [], action) => {
             return state.filter( task => task.id !== action.payload);
         
         case taskTypes.update:
-            return state.map( task => task.id === action.payload);
+            return state.map( task => (task.id === action.payload) ? {...task, content: 'test' } : task);
+
+        case taskTypes.reordered:
+            return [...action.payload]
 
         default:
             return state;

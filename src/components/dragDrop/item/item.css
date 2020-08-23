@@ -27,3 +27,9 @@
     transition: all .2s ease-in-out;
     transform: scale(1.5)
 }
+
+.textarea-input {
+    border:none;
+    background-color: lightblue;
+    resize: none;
+}

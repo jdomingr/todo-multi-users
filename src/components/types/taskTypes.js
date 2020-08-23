@@ -1,5 +1,6 @@
 export const taskTypes = {
     add: 'add',
     remove: 'remove',
-    update: 'update'
+    update: 'update',
+    reordered: 'reordered'
 }

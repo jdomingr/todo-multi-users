@@ -1,10 +1,16 @@
 import React from 'react'
 import { DraggableItem } from '../item/DraggableItem';
 
-export const ItemList = ( {tasks} ) => {
+export const ItemList = ( {tasks, handleAddTask, handleDeleteTask} ) => {
 
-    
-    return tasks.map( (task, index) => (
-        <DraggableItem task={ task } id={ index } key = {task.id} />
-    ));
+    return (
+        <div>
+            { 
+                tasks.map( (task, index) => (
+                    <DraggableItem task={ task } id={ index } key = {task.id} handleDeleteTask = {handleDeleteTask}/>
+                ))
+            }
+        <button className="btn-list" onClick = { () => handleAddTask() }>Add task</button>
+        </div>
+    );
 }
