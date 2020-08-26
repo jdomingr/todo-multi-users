@@ -13,16 +13,6 @@
     text-align: center;
 }
 
-.list-container{
-    display:flex;
-    flex-direction: column;
-    background-color: lightgray;
-    width: 300px;
-    border-radius: 5px;
-    margin: 50px;
-    box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);;
-}
-
 .btn-list {
     display: block;
     width: 100%;
