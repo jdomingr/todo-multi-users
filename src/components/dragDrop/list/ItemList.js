@@ -1,5 +1,6 @@
 import React from 'react'
 import { DraggableItem } from '../item/DraggableItem';
+import './itemList.css';
 
 export const ItemList = ( {tasks, handleAddTask, handleDeleteTask} ) => {
 

@@ -5,11 +5,11 @@ import { itemReducer } from '../item/itemReducer';
 import { taskTypes } from '../../types/taskTypes'
 import './listsContainer.css';
 
-export const ListsContainer = ( { id, list, handleUpdateList } ) => {
+export const ListsContainer = ( { id_list, list, handleUpdateList, handleRemoveList } ) => {
 
     const init = () => {
         return [
-            {id: '1', content: 'asdasdasd'}
+            {id: '1', content: 'Test'}
         ];
     }
     
@@ -27,9 +27,7 @@ export const ListsContainer = ( { id, list, handleUpdateList } ) => {
     }
 
     useEffect( () => {
-       
-        handleUpdateList(id, tasks);
-     
+        handleUpdateList(id_list, tasks);
     }, [tasks]);
 
 
@@ -59,8 +57,8 @@ export const ListsContainer = ( { id, list, handleUpdateList } ) => {
     return (
         <>
         
-                <DragDropContext onDragEnd={onDragEnd} key={id}>
-                    <Droppable droppableId={id}>
+                <DragDropContext onDragEnd={onDragEnd} key={id_list}>
+                    <Droppable droppableId={id_list}>
                         {provided => (
                             <div className="list-container" ref={provided.innerRef} {...provided.droppableProps}>
                                 <ItemList tasks = { list } handleDeleteTask={handleDeleteTask} handleAddTask={handleAddTask} />
@@ -69,7 +67,8 @@ export const ListsContainer = ( { id, list, handleUpdateList } ) => {
                         )}
                     </Droppable>
                 </DragDropContext>
-        
+                <button className="btn-list" onClick = { () => handleAddTask() }>Edit list</button>           
+                <button className="btn-list" onClick = { () => handleRemoveList(id_list) }>Remove list</button>           
         
         </>
     )

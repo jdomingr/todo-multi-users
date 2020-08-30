@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import { ListsContainer } from '../dragDrop/listContainer/ListsContainer';
 import { listTypes } from '../types/listTypes';
 import { listReducer } from './listReducer';
@@ -29,25 +29,27 @@ export const Dashboard = () => {
         dispatch({ type: listTypes.update, payload: listUpdated});
     }
 
+    const handleRemoveList = ( id ) => {
+        dispatch({type: listTypes.remove, payload: id});
+    }
 
-
-    useEffect( () => {
-        console.log(lists)
-    }, [lists]);
-  
     return(
         <div className="main-container">
             <h1 className="h1-title">Dashboard</h1>
+            <div className="container-default">
+            <button className="btn-add-list" onClick={ handleAddList }>Add list</button>
+            </div>
+            
             <div className="container-dashboard">
                 { lists.map( list => (
-                    <ListsContainer key={list.id} id = {list.id} list = {list.tasks} handleUpdateList = {handleUpdateList} />
+                    <ListsContainer key={list.id} 
+                    id_list = {list.id}
+                    list = {list.tasks}
+                    handleUpdateList = { handleUpdateList }
+                    handleRemoveList = { handleRemoveList }   />
                 ))}
                
-                
             </div>
-            <button onClick={ handleAddList }>Hit me</button>
-            
-
         </div>
     );
 }

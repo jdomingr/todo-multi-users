@@ -26,3 +26,16 @@
     transition: all .2s ease-in-out;
     transform: scale(1.1)
 }
+
+.container-default {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn-add-list {
+    background-color: white;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    
+}
