@@ -1,31 +1,51 @@
 import React, { useState, useReducer, useEffect } from 'react';
-import './list.css';
-import { itemReducer } from '../dragDrop/item/itemReducer';
-import { taskTypes } from '../types/taskTypes';
 import { ListsContainer } from '../dragDrop/listContainer/ListsContainer';
+import { listTypes } from '../types/listTypes';
+import { listReducer } from './listReducer';
+import './list.css';
 
 export const Dashboard = () => {
 
-    
+    const init = () => {
+        return [
+            {
+                id: `${new Date().getTime()}`,
+                tasks: []
+            },
+        ];
+    }
+
+    const [lists, dispatch] = useReducer(listReducer, [], init);
    
-    const initialListState = [ 
-        {
-            id: '1', //`${new Date().getTime()}`
-            tasks: []
-        },
-     ];
+  
+    const handleAddList = () => {
+        const test = {id: `${new Date().getTime()}`,
+        tasks: [] }
+        dispatch({ type: listTypes.add, payload: test});
+    }
 
-    const [list, setList] = useState(initialListState);
+    const handleUpdateList = ( id, task) => {
+        const listUpdated = { id , task};
+        dispatch({ type: listTypes.update, payload: listUpdated});
+    }
 
-    
+
+
+    useEffect( () => {
+        console.log(lists)
+    }, [lists]);
   
     return(
         <div className="main-container">
             <h1 className="h1-title">Dashboard</h1>
             <div className="container-dashboard">
-               <ListsContainer list = {list} setList = {setList} />
+                { lists.map( list => (
+                    <ListsContainer key={list.id} id = {list.id} list = {list.tasks} handleUpdateList = {handleUpdateList} />
+                ))}
+               
                 
             </div>
+            <button onClick={ handleAddList }>Hit me</button>
             
 
         </div>

@@ -5,7 +5,7 @@ import { itemReducer } from '../item/itemReducer';
 import { taskTypes } from '../../types/taskTypes'
 import './listsContainer.css';
 
-export const ListsContainer = ( { list, setList } ) => {
+export const ListsContainer = ( { id, list, handleUpdateList } ) => {
 
     const init = () => {
         return [
@@ -27,16 +27,11 @@ export const ListsContainer = ( { list, setList } ) => {
     }
 
     useEffect( () => {
-        const newList = list.map( (item) => {
-            if(item.id === '1'){
-                const aux = {...item, tasks};
-                return aux;
-            }
-            return  item}
-        );
-        setList(newList);
+       
+        handleUpdateList(id, tasks);
      
     }, [tasks]);
+
 
     const reorderTasks = ( tasks, sourceIndex, destinationIndex) => {
         const reorderedTasks = Array.from(tasks);
@@ -63,20 +58,19 @@ export const ListsContainer = ( { list, setList } ) => {
 
     return (
         <>
-        {
-            list.map( l => (
-                <DragDropContext onDragEnd={onDragEnd} key={l.id}>
-                    <Droppable droppableId={l.id}>
+        
+                <DragDropContext onDragEnd={onDragEnd} key={id}>
+                    <Droppable droppableId={id}>
                         {provided => (
                             <div className="list-container" ref={provided.innerRef} {...provided.droppableProps}>
-                                <ItemList tasks = { l.tasks } handleDeleteTask={handleDeleteTask} handleAddTask={handleAddTask} />
+                                <ItemList tasks = { list } handleDeleteTask={handleDeleteTask} handleAddTask={handleAddTask} />
                                 {provided.placeholder}
                             </div>
                         )}
                     </Droppable>
                 </DragDropContext>
-            ))
-        }
+        
+        
         </>
     )
 }
